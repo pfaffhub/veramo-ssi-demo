@@ -1,0 +1,31 @@
+{
+  "name": "veramo-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "devDependencies": {
+    "@types/node": "^26.4.1",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.23.13",
+    "typescript": "^7.0.2"
+  },
+  "dependencies": {
+    "@veramo/core": "^7.0.0",
+    "@veramo/credential-jwt": "^7.0.0",
+    "@veramo/credential-w3c": "^7.0.0",
+    "@veramo/did-manager": "^7.0.0",
+    "@veramo/did-provider-ethr": "^7.0.0",
+    "@veramo/did-resolver": "^7.0.0",
+    "@veramo/key-manager": "^7.0.0",
+    "@veramo/kms-local": "^7.0.0",
+    "did-resolver": "^5.0.1",
+    "ethr-did-resolver": "^14.1.2"
+  }
+}

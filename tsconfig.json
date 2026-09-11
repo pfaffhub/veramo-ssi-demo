@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "preserveConstEnums": true,
+    "strict": true,
+    "target": "esnext",
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "esModuleInterop": true
+  }
+}

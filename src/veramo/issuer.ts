@@ -2,11 +2,11 @@ import { agent } from './agent.js'
 
 export async function createIssuer() {
 
-  // Erstellt die DID des Issuers / der FH.
+  // Erstellt die DID der Ärztin (Issuer).
   const issuer = await agent.didManagerCreate()
 
   console.log('\n-----------------')
-  console.log('Issuer / FH DID')
+  console.log('Issuer / Ärztin DID')
   console.log(issuer.did)
   console.log('-----------------')
 
@@ -18,26 +18,32 @@ export async function issueCredential(
   holderDid: string
 ) {
 
-  // Die FH stellt dem Studenten ein
-  // Verifiable Credential aus.
+  // Die Ärztin stellt dem Patienten ein E-Rezept
+  // als Verifiable Credential aus.
   const credential = await agent.createVerifiableCredential({
 
     credential: {
 
-      // Wer stellt das Credential aus?
+      // Wer stellt das Rezept aus? -> die Ärztin
       issuer: {
         id: issuerDid,
       },
 
-      // Über wen wird eine Aussage gemacht?
+      // Eigener Credential-Typ für das Rezept.
+      type: ['VerifiableCredential', 'EPrescription'],
+
+      // Über wen wird eine Aussage gemacht? -> der Patient
       credentialSubject: {
 
-        // DID des Studenten
+        // DID des Patienten
         id: holderDid,
 
-        // Claims über den Studenten
-        name: 'Max Mustermann',
-        degree: 'IT-Security',
+        // Claims des Rezepts
+        patientName: 'Max Mustermann',
+        medikament: 'Ibuprofen 400 mg',
+        dosierung: '3x täglich 1 Tablette',
+        gueltigBis: '2026-12-31',
+        ausstellendeAerztin: 'Dr. Anna Berger',
       },
     },
 
@@ -46,7 +52,7 @@ export async function issueCredential(
   })
 
   console.log('\n-----------------')
-  console.log('Verifiable Credential')
+  console.log('E-Rezept (Verifiable Credential)')
   console.dir(credential, { depth: null })
   console.log('-----------------')
 

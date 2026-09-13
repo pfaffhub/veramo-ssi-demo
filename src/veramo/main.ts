@@ -12,7 +12,11 @@ import {
   testManipulation,
 } from './verifier.js'
 
-
+//Verifiable Presentation
+import {
+  createPresentation,
+  verifyPresentation,
+} from './presentation.js'
 // DEMO
 
 
@@ -44,6 +48,16 @@ const credential = await issueCredential(
 
 // 5. Credential überprüfen
 await verifyCredential(credential)
+
+// 6.Der Student entscheidet selbst, was er vorzeigt.
+const presentation = await createPresentation(
+  holder.did,
+  credential
+)
+
+// 7. NEU: Verifier prüft die Presentation
+//    Nur Signaturen werden geprüft, die FH ist nicht involviert.
+await verifyPresentation(presentation)
 
 
 // 6. Credential manipulieren und erneut überprüfen
